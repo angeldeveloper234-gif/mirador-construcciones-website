@@ -1,0 +1,331 @@
+---
+name: ui-ux-design
+description: >
+  Reglas maestras de diseño UI/UX para crear sitios web profesionales, accesibles y orientados a conversión.
+  SIEMPRE consultá este skill antes de realizar cualquier cambio visual, de layout, tipografía, color,
+  componentes interactivos o estructura de una interfaz. Usalo cuando el usuario pida modificar estilos,
+  crear componentes, ajustar layouts, cambiar colores o fuentes, rediseñar secciones, o cualquier tarea
+  que impacte la apariencia o experiencia del usuario. Si hay una decisión de diseño en juego — por mínima
+  que parezca — este skill debe estar activo. No hagas cambios visuales de memoria; siempre verificá contra
+  estas reglas.
+---
+
+# UI/UX Design — Reglas Maestras
+
+> **INSTRUCCIÓN CRÍTICA PARA LA IA:** Antes de implementar cualquier cambio visual o de layout, revisá
+> esta guía completa. Si alguna decisión de diseño que estás por tomar contradice una regla aquí,
+> **la regla gana**. No improvises. No uses "lo que parece lindo". Seguí el sistema.
+
+---
+
+## 0. Mentalidad Correcta
+
+El diseño NO es arte. Es una historia que guía al usuario hacia una acción específica.
+
+**Principio fundamental:** Toda decisión de diseño debe responder a esta pregunta:
+*¿Esto le hace más fácil al usuario encontrar lo que busca o completar su objetivo?*
+
+Si la respuesta es "no" o "no sé", eliminalo o simplificalo.
+
+- **Diseñá para el usuario final**, no para el cliente, no para vos mismo.
+- **Reducí la fricción** al máximo. El flujo debe ser "estúpidamente obvio".
+- **Respetá los patrones familiares:** navegación arriba, flujo de izquierda a derecha y de arriba hacia abajo, logo a la izquierda.
+- **Nunca uses Lorem Ipsum.** Usá texto real o el más cercano posible a la realidad. El dummy text oculta problemas de diseño.
+
+---
+
+## 1. Sistema de Espaciado y Grid
+
+### Regla de los múltiplos de 4/8 px — OBLIGATORIA
+
+**Todo margen, padding, gap y tamaño debe ser múltiplo de 4px.** Preferentemente de 8px.
+
+```
+Escala de espaciado permitida:
+4 · 8 · 12 · 16 · 24 · 32 · 40 · 48 · 64 · 80 · 96 · 128px
+```
+
+- ❌ `padding: 13px` → ✅ `padding: 12px` o `padding: 16px`
+- ❌ `margin-top: 22px` → ✅ `margin-top: 24px`
+- ❌ `gap: 7px` → ✅ `gap: 8px`
+
+### Grid de columnas
+
+- Usá grid de **12 columnas** para layouts responsivos.
+- **Nunca rompas el grid** para hacer algo "que se vea distinto".
+- Elementos principales: 8–10 columnas centradas en desktop.
+- Sidebars: 3–4 columnas.
+
+### Whitespace — El arma secreta
+
+El espacio en blanco **no es espacio vacío**. Es un elemento activo de diseño.
+
+- **Agrupá** elementos relacionados con poco espacio entre ellos.
+- **Separaá** secciones distintas con espacio generoso (mínimo 64px entre secciones).
+- Si una sección se siente "apretada", primero probá **aumentar el padding interno** antes de reducir contenido.
+- **Regla del respirar:** Si dos elementos no tienen una razón específica para estar juntos, sepáralos.
+
+---
+
+## 2. Jerarquía Visual — La ley de la mirada
+
+El ojo del usuario sigue un camino predecible. Tu trabajo es diseñar ese camino.
+
+### Orden de jerarquía (de mayor a menor peso visual)
+
+1. **Tamaño** — Lo más grande se ve primero.
+2. **Color y contraste** — Los colores saturados o de alto contraste atraen la mirada.
+3. **Posición** — Arriba y a la izquierda se ven antes.
+4. **Peso tipográfico** — El negrita llama más que el regular.
+5. **Espacio en blanco** — El elemento con más espacio alrededor "respira" y se destaca.
+
+### Reglas de aplicación
+
+- **Lo más importante va arriba, es más grande y tiene más peso visual.** Sin excepciones.
+- Nunca pongas dos elementos con el mismo peso visual en la misma sección. Siempre hay una jerarquía clara.
+- **Scaneabilidad:** Un usuario debe poder entender de qué trata la página en 5 segundos escaneando solo los títulos y CTAs.
+- Usá tamaño, color y negrita para dirigir la mirada — no para decorar.
+
+---
+
+## 3. Tipografía — Sistema y Reglas
+
+### Familia tipográfica
+
+- **Máximo 1 familia tipográfica** por proyecto (en casos excepcionales, 2: una para títulos, otra para cuerpo).
+- Preferí **Sans Serif** para interfaces digitales: mejor legibilidad en pantalla.
+- Familias recomendadas: Inter, Geist, Plus Jakarta Sans, DM Sans, Outfit, Satoshi.
+- **Nunca uses fuentes decorativas** para texto de párrafo. Matan la legibilidad.
+
+### Escala de tamaños — Máximo 6 niveles
+
+| Nivel       | Uso                        | Tamaño recomendado |
+|-------------|----------------------------|--------------------|
+| Display     | Hero, landing principal    | 56–72px            |
+| H1          | Título de página           | 40–48px            |
+| H2          | Secciones principales      | 28–36px            |
+| H3          | Subsecciones               | 20–24px            |
+| Body        | Texto de párrafo           | 16–18px            |
+| Small/Label | Metadatos, captions, tags  | 12–14px            |
+
+- ❌ No uses tamaños intermedios inventados (ej: 22px cuando ya tenés 20 y 24).
+- ✅ Elegí de la escala y mantené consistencia en todo el proyecto.
+
+### Ajustes "pro" para encabezados grandes (H1, Display)
+
+```css
+/* Para títulos grandes, siempre aplicar: */
+letter-spacing: -0.02em; /* -2% mínimo, hasta -3% */
+line-height: 1.1;        /* 110%, máximo 120% */
+font-weight: 700;        /* Bold o Black */
+```
+
+### Reglas de line-height por tipo
+
+| Tipo        | Line-height |
+|-------------|-------------|
+| Títulos grandes | 1.1 – 1.2 |
+| Subtítulos  | 1.3 – 1.4  |
+| Párrafos    | 1.5 – 1.7  |
+| UI labels   | 1.2 – 1.3  |
+
+### Longitud de línea (measure)
+
+- **Ideal:** 60–80 caracteres por línea para texto de párrafo.
+- Usá `max-width: 65ch` en contenedores de texto largo.
+- Nunca dejes que el texto de párrafo ocupe el 100% del ancho en desktop.
+
+---
+
+## 4. Color — Sistema y Semántica
+
+### Regla 60–30–10 — OBLIGATORIA
+
+| Proporción | Tipo                  | Ejemplo                        |
+|------------|-----------------------|--------------------------------|
+| **60%**    | Colores dominantes    | Blancos, grises, negros, beige |
+| **30%**    | Colores de marca      | El color principal del cliente |
+| **10%**    | Color de acento (CTA) | Un color de alto contraste     |
+
+Si el 10% se vuelve el 30%, el sitio grita y pierde dirección visual.
+
+### Colores semánticos — Úsalos con coherencia
+
+| Color   | Significado             | Uso en UI               |
+|---------|-------------------------|-------------------------|
+| 🔵 Azul  | Confianza, calma, info  | Links, botones primarios, banners informativos |
+| 🟢 Verde | Éxito, confirmación     | Estados de éxito, checkmarks, "completado"    |
+| 🔴 Rojo  | Error, peligro, urgencia| Mensajes de error, alertas críticas, stock bajo |
+| 🟡 Amarillo | Advertencia, atención | Warnings, betas, notas importantes            |
+
+**Nunca uses un color semántico fuera de su significado.** Un botón rojo en una acción positiva confunde al usuario.
+
+### Accesibilidad de contraste — NO NEGOCIABLE
+
+- Texto normal: ratio mínimo **4.5:1** (WCAG AA).
+- Texto grande (+18px bold): ratio mínimo **3:1**.
+- Usá herramientas como [contrast.tools](https://contrast.tools) o [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/) para verificar.
+
+### Dark Mode — Reglas específicas
+
+En modo oscuro las sombras no funcionan. La profundidad se logra con claridad de capas:
+
+```
+Capa base (más oscura)   → e.g., #0A0A0A
+Capa superficie          → e.g., #141414  (más clara que la base)
+Capa elevada (tarjetas)  → e.g., #1E1E1E  (más clara que la superficie)
+```
+
+- Las tarjetas y modales **deben ser más claros que el fondo**. Nunca al revés.
+- Nunca uses negro puro (#000000) como fondo. Usá near-black (#0A0A0A, #111111).
+- Nunca uses blanco puro (#FFFFFF) para texto en dark mode. Usá near-white (#F5F5F5, #E5E5E5).
+
+---
+
+## 5. Componentes Interactivos
+
+### Botones — 4 estados obligatorios
+
+Todo botón debe tener TODOS estos estados visualmente diferenciados:
+
+| Estado       | Descripción                                          |
+|--------------|------------------------------------------------------|
+| **Default**  | Estado normal, en reposo                             |
+| **Hover**    | Al pasar el mouse — ligero cambio de color/sombra    |
+| **Active**   | Al presionar — el botón "baja" visualmente (escala)  |
+| **Disabled** | Inactivo — opacidad reducida, cursor `not-allowed`   |
+
+```css
+/* Ejemplo de transición base para botones */
+button {
+  transition: background-color 150ms ease, transform 100ms ease, opacity 150ms ease;
+}
+button:hover  { filter: brightness(1.08); }
+button:active { transform: scale(0.97); }
+button:disabled { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
+```
+
+### Ghost Buttons — PROHIBIDOS para acciones principales
+
+- Los ghost buttons (solo contorno, sin relleno) son **invisibles psicológicamente** para muchos usuarios.
+- **Úsalos únicamente** para acciones secundarias cuando ya existe un botón primario sólido junto a ellos.
+- El CTA principal SIEMPRE debe tener relleno sólido con color de acento.
+
+### Jerarquía de botones en la misma sección
+
+```
+CTA Principal  → Sólido, color de acento (solo UNO por sección)
+CTA Secundario → Outlined/ghost o variante más suave
+Acción terciaria → Link con underline, sin forma de botón
+```
+
+### Micro-interacciones — Feedback inmediato
+
+**Cada acción del usuario debe recibir una respuesta visual en menos de 100ms.**
+
+- Copiar texto → toast/snackbar de confirmación
+- Enviar formulario → estado de carga + confirmación
+- Eliminar item → animación de salida
+- Cargar datos → skeleton screens (nunca spinners en el centro de la página)
+
+Usá `transition` con duraciones cortas:
+- Cambios de color/hover: `150ms ease`
+- Entradas/salidas de elementos: `200–300ms ease`
+- Animaciones complejas: máximo `500ms`, siempre con `prefers-reduced-motion` como fallback.
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+```
+
+### Formularios
+
+- Cada campo debe tener: label visible, placeholder descriptivo, estado de error claro con mensaje específico.
+- **Nunca uses solo el placeholder como label.** Desaparece al escribir.
+- Mensajes de error: en rojo semántico, con ícono, debajo del campo afectado.
+- Botón de submit: se deshabilita durante el envío para evitar doble submission.
+
+### Iconografía
+
+- Los íconos deben tener el **mismo tamaño que el line-height del texto adyacente** (ej: texto 16px con line-height 24px → ícono 24px).
+- Usá una sola librería de íconos por proyecto (Lucide, Heroicons, Phosphor, etc.).
+- Nunca mezcles estilos de íconos (outline + filled en la misma sección).
+
+---
+
+## 6. Divulgación Progresiva — Mostrá solo lo necesario
+
+- Mostrá solo la información que el usuario necesita **en ese momento específico**.
+- Revelá complejidad a medida que el usuario avanza, nunca toda de golpe.
+- Preferí **"cargar más"** antes que scroll infinito (da control al usuario).
+- Preferí **acordeón/tabs** antes que una página que lo muestra todo.
+- Usá **tooltips** para información de apoyo, no para información crítica.
+
+---
+
+## 7. Responsive Design
+
+### Breakpoints estándar
+
+```css
+/* Mobile first approach */
+/* Base: 0–639px (mobile) */
+@media (min-width: 640px)  { /* sm: tablet portrait */ }
+@media (min-width: 768px)  { /* md: tablet landscape */ }
+@media (min-width: 1024px) { /* lg: desktop */ }
+@media (min-width: 1280px) { /* xl: large desktop */ }
+@media (min-width: 1536px) { /* 2xl: wide screens */ }
+```
+
+### Reglas responsivas obligatorias
+
+- **Mobile first:** Diseñá y codificá desde el viewport más chico hacia arriba.
+- Tamaño mínimo de target táctil: **44×44px** (botones, links, íconos clicables).
+- Texto de párrafo: mínimo **16px** en mobile (evita el zoom automático en iOS).
+- Nunca uses `overflow: hidden` en el `body` salvo para modales activos.
+- Stacks verticales en mobile: todos los flex/grid deben colapsar a columna única en mobile.
+
+---
+
+## 8. Checklist Pre-Implementación
+
+Antes de aplicar cualquier cambio de diseño, verificá:
+
+- [ ] ¿El espaciado es múltiplo de 4px?
+- [ ] ¿La tipografía usa la escala definida (máx. 6 niveles)?
+- [ ] ¿Los títulos grandes tienen `letter-spacing: -0.02em` y `line-height: 1.1`?
+- [ ] ¿El contraste texto/fondo cumple WCAG AA?
+- [ ] ¿El CTA principal es un botón sólido (no ghost)?
+- [ ] ¿El botón tiene los 4 estados visuales?
+- [ ] ¿La jerarquía visual guía la mirada hacia la acción principal?
+- [ ] ¿La distribución de color respeta la regla 60-30-10?
+- [ ] ¿Hay whitespace suficiente entre secciones (mínimo 64px)?
+- [ ] ¿El diseño funciona en mobile (44px touch targets, 16px body text)?
+- [ ] ¿Se respeta `prefers-reduced-motion` en animaciones?
+- [ ] ¿El color semántico está siendo usado correctamente?
+
+**Si algún ítem falla: corregilo antes de avanzar.**
+
+---
+
+## 9. Anti-patrones — Nunca hagas esto
+
+| ❌ Anti-patrón                                  | ✅ Alternativa correcta                          |
+|------------------------------------------------|--------------------------------------------------|
+| Texto con `font-size` menor a 12px             | Mínimo 12px, preferentemente 14px para small    |
+| Más de 2 CTAs de igual jerarquía en una sección | Un CTA primario, uno secundario máximo           |
+| Contraste texto/fondo por debajo de 4.5:1      | Verificar y ajustar siempre                      |
+| Animaciones sin `prefers-reduced-motion`       | Siempre incluir el media query                   |
+| Usar `Lorem Ipsum` en diseño final             | Texto real o aproximado                          |
+| Mezclar más de 2 familias tipográficas         | 1 familia, variantes de peso                     |
+| Íconos de diferentes estilos (outline/filled)  | Una sola librería, un solo estilo                |
+| Scroll infinito sin paginación como alternativa | "Cargar más" o paginación visible               |
+| Ghost button como CTA principal                | Botón sólido con color de acento                 |
+| Sombras en Dark Mode para crear profundidad    | Usar capas de color más claro                    |
+| Espaciado con valores aleatorios (13px, 22px)  | Solo múltiplos de 4px o 8px                      |
+| Más de 6 tamaños de fuente distintos           | Definir escala y respetarla                      |
+| Label solo como placeholder en forms          | Label visible siempre encima del campo           |
