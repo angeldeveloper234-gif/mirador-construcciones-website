@@ -12,7 +12,7 @@ export function Home() {
         <main className="relative selection:bg-primary selection:text-white bg-white">
             <SEO 
                 description={`${branding.name} — ${branding.slogan}. ${branding.description}`}
-                keywords={`${branding.name}, arquitectura premium, diseño de interiores, proyectos 3d, buenos aires`}
+                keywords={`${branding.name}, arquitectura premium, diseño de interiores, proyectos 3d, querétaro, queretaro, cdmx`}
             />
             
             {/* 1. HERO SECTION */}

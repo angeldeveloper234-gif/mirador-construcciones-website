@@ -229,7 +229,7 @@ export function Contact() {
                       <input
                         {...register("phone")}
                         className="w-full bg-industrial-50 border border-industrial-100 rounded-2xl px-6 py-4 text-industrial-900 focus:outline-none focus:border-primary focus:bg-white transition-all placeholder:text-industrial-300 text-sm"
-                        placeholder="+54 11 ..."
+                        placeholder="+52 55 ..."
                       />
                       {errors.phone && <span className="text-[10px] text-red-500 uppercase font-sans font-bold">{errors.phone.message}</span>}
                     </div>

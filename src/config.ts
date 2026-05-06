@@ -35,10 +35,10 @@ export const config = {
         logo: "MIRADOR",
         slogan: "Líderes en construcción y arquitectura de alto nivel.",
         description: "En Mirador Construcciones materializamos proyectos de alta complejidad con precisión técnica, eficiencia operativa y un compromiso inquebrantable con la calidad.",
-        location: "Sede Central — Buenos Aires",
+        location: "Sede Central — CDMX, México",
         email: "hola@miradorconstrucciones.com",
-        phone: "+54 11 9876-5432",
-        whatsapp: "+541198765432",
+        phone: "+52 55 9876-5432",
+        whatsapp: "+525598765432",
         cta_text: "INICIAR OBRA",
         cta_link: "/contact",
     },
@@ -192,8 +192,8 @@ export const config = {
         }
     ] as Project[],
     dynamicContent: {
-        city: "Buenos Aires",
-        localAnchor: "Recoleta",
+        city: "CDMX",
+        localAnchor: "Polanco",
         stats: {
             experienceYears: 15,
             completedProjects: 85,
@@ -220,8 +220,8 @@ export const config = {
             }
         ],
         awards: [
-            { year: "2023", title: "Excelencia en Construcción Sustentable", award: "Gold Medal - CPAU", image: "https://images.unsplash.com/photo-1541829070764-84a7d30dee3f?q=80&w=600" },
-            { year: "2022", title: "Innovación en Gestión de Obra", award: "Premio Estilo - CABA", image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=600" }
+            { year: "2023", title: "Excelencia en Construcción Sustentable", award: "Gold Medal - Architecture MX", image: "https://images.unsplash.com/photo-1541829070764-84a7d30dee3f?q=80&w=600" },
+            { year: "2022", title: "Innovación en Gestión de Obra", award: "Premio Estilo - CDMX", image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=600" }
         ],
         about_page: {
             story: "Fundada en 2012, Mirador Construcciones nació para elevar los estándares de ejecución en la industria. Lo que comenzó como una cuadrilla de especialistas se ha convertido en una empresa constructora integral, reconocida por su solvencia técnica y el cumplimiento riguroso de plazos.",
@@ -272,7 +272,7 @@ export const config = {
         section_details: {
             Hero: {
                 background_concept: "/services-img/industrial.webp",
-                microtext: "Sede Central — Buenos Aires",
+                microtext: "Sede Central — CDMX, México",
                 title: "Materializamos infraestructuras, construimos confianza.",
                 subtitle: "En Mirador Construcciones combinamos ingeniería de precisión con procesos ágiles para entregar obras que superan los estándares de la industria.",
                 cta_primary: "SOLICITAR COTIZACIÓN",
@@ -382,8 +382,8 @@ export const config = {
                 button_text: "VER DISPONIBILIDAD"
             },
             info: {
-                address: "Av. del Libertador 1200, Recoleta, CABA",
-                google_maps_embed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.444391629828!2d-58.3917894!3d-34.5930262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccabce5555555%3A0x5555555555555555!2sAv.%20del%20Libertador%201200%2C%20C1101%20ABN%2C%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1712280000000!5m2!1ses-419!2sar",
+                address: "Av. Paseo de la Reforma, Polanco, CDMX",
+                google_maps_embed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.483984534563!2d-99.1925345!3d19.4297123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff3463319803%3A0x6b1f237f84759714!2sAv.%20Paseo%20de%20la%20Reforma%2C%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses-419!2smx!4v1712280000000!5m2!1ses-419!2smx",
                 response_time: "Garantizamos una respuesta en menos de 24 horas hábiles.",
                 socials: [
                     { platform: "Instagram", url: "https://instagram.com/miradorconstrucciones", icon: "instagram" },

@@ -26,7 +26,7 @@ export const Manifesto = () => {
                         </div>
                         {/* Dramatic Floating Year Image - High Contrast */}
                         <div className="w-40 aspect-[4/5] bg-industrial-100 p-8 shadow-2xl relative overflow-hidden group border border-industrial-200">
-                           <img src="images/sketch-detail.jpg" className="w-full h-full object-cover grayscale contrast-125 opacity-80 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000" alt="Sketch" />
+                           <img src="/images/sketch-detail.png" className="w-full h-full object-cover grayscale contrast-125 opacity-80 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000" alt="Sketch" />
                             <span className="absolute bottom-4 left-4 text-[10px] font-sans text-industrial-900 font-black tracking-[0.2em]">Since 1998</span>
                         </div>
                     </motion.div>

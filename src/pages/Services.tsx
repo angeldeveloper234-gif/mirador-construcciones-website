@@ -256,7 +256,7 @@ export function Services() {
                             >
                                 INICIAR CONSULTA GRATIS
                             </MiradorButton>
-                            <a href="tel:+541198765432" className="text-industrial-900 font-sans font-bold uppercase tracking-widest text-sm hover:text-primary transition-colors">
+                            <a href={`tel:${branding.phone.replace(/\s/g, '')}`} className="text-industrial-900 font-sans font-bold uppercase tracking-widest text-sm hover:text-primary transition-colors">
                                 LLAMAR AHORA
                             </a>
                         </div>

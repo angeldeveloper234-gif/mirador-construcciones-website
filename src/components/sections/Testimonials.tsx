@@ -1,130 +1,188 @@
+'use client';
+
 import { config } from '@/config';
-import { motion } from 'motion/react';
-import { Star, Quote } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Autoplay, Pagination } from 'swiper/modules';
+import { useRef, useState, useEffect } from 'react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 export function Testimonials() {
     const testimonials = config.dynamicContent.section_details.Testimonials;
-    
-    // Duplicamos los testimonios para un efecto infinito fluido
-    const duplicatedTestimonials = [...testimonials, ...testimonials, ...testimonials];
+    const prevRef = useRef<HTMLButtonElement>(null);
+    const nextRef = useRef<HTMLButtonElement>(null);
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    useEffect(() => {
+        setIsLoaded(true);
+    }, []);
 
     return (
-        <section id="testimonios" className="py-24 md:py-40 bg-white overflow-hidden relative border-t border-zinc-100">
-            {/* Elementos de fondo decorativos */}
+        <section id="testimonios" className="py-24 md:py-40 bg-white overflow-hidden relative border-t border-zinc-100 w-full">
+            {/* Background Decor */}
             <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
                 <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/10 blur-[120px] rounded-full" />
                 <div className="absolute bottom-[-10%] left-[-10%] w-[30%] h-[30%] bg-primary/5 blur-[100px] rounded-full" />
             </div>
 
-            <div className="container mx-auto px-6 mb-20 relative z-10 text-center md:text-left">
-                <div className="max-w-4xl mx-auto md:mx-0">
-                    <motion.span 
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        className="inline-flex items-center gap-2 text-primary font-mono text-xs tracking-[0.3em] uppercase mb-8"
-                    >
-                        <span className="w-12 h-[1px] bg-primary"></span>
-                        Opiniones de Clientes
-                    </motion.span>
-                    <motion.h2 
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-4xl md:text-7xl font-display font-bold text-zinc-900 leading-[1.05] tracking-tight mb-10"
-                    >
-                        Construyendo <span className="text-primary italic">Reputación</span>, un Proyecto a la Vez.
-                    </motion.h2>
-                    <motion.p 
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                        className="text-zinc-600 text-lg md:text-2xl font-light leading-relaxed max-w-2xl"
-                    >
-                        La confianza de nuestros clientes es el cimiento más sólido que hemos construido en todo México. 
-                    </motion.p>
+            <div className="container mx-auto px-6 mb-16 md:mb-20 relative z-10">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+                    <div className="max-w-3xl">
+                        <motion.span 
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            className="inline-flex items-center gap-2 text-primary font-mono text-[10px] md:text-xs tracking-[0.3em] uppercase mb-6 md:mb-8"
+                        >
+                            <span className="w-8 md:w-12 h-[1px] bg-primary"></span>
+                            Opiniones de Clientes
+                        </motion.span>
+                        <motion.h2 
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="text-3xl md:text-7xl font-display font-bold text-zinc-900 leading-[1.1] tracking-tight"
+                        >
+                            Construyendo <span className="text-primary italic">Reputación</span>,<br className="hidden md:block" /> un Proyecto a la Vez.
+                        </motion.h2>
+                    </div>
+
+                    {/* Navigation Buttons - Hidden on small mobile */}
+                    <div className="hidden sm:flex gap-3">
+                        <button
+                            ref={prevRef}
+                            className="w-12 h-12 md:w-16 md:h-16 rounded-full border border-zinc-200 flex items-center justify-center text-zinc-400 hover:text-primary hover:border-primary transition-all duration-300 disabled:opacity-30"
+                        >
+                            <ChevronLeft size={24} />
+                        </button>
+                        <button
+                            ref={nextRef}
+                            className="w-12 h-12 md:w-16 md:h-16 rounded-full border border-zinc-200 flex items-center justify-center text-zinc-400 hover:text-primary hover:border-primary transition-all duration-300 disabled:opacity-30"
+                        >
+                            <ChevronRight size={24} />
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            {/* Carrusel Infinito (Ticker) */}
-            <div className="relative flex overflow-x-hidden group py-12">
-                <motion.div 
-                    animate={{
-                        x: [0, -1 * (482 * testimonials.length)], // Aprox width including gaps
-                    }}
-                    transition={{
-                        x: {
-                            repeat: Infinity,
-                            repeatType: "loop",
-                            duration: 40,
-                            ease: "linear",
-                        },
-                    }}
-                    className="flex gap-8 whitespace-nowrap px-4"
-                >
-                    {duplicatedTestimonials.map((t: any, i: number) => (
-                        <div 
-                            key={i}
-                            className="flex-shrink-0 w-[320px] md:w-[450px] p-8 md:p-12 rounded-[2.5rem] bg-zinc-50 border border-zinc-100 shadow-sm group/card hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 transition-all duration-700 flex flex-col justify-between"
+            {/* Slider Section */}
+            <div className="relative w-full overflow-hidden px-4 md:px-0">
+                <AnimatePresence mode="wait">
+                    {isLoaded ? (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            className="w-full"
                         >
-                            <div>
-                                <div className="flex justify-between items-start mb-10">
-                                    <div className="flex gap-1.5">
-                                        {[...Array(5)].map((_, idx) => (
-                                            <Star key={idx} size={18} className="fill-primary text-primary" />
-                                        ))}
-                                    </div>
-                                    <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-zinc-100 text-[10px] font-mono text-zinc-500 tracking-wider shadow-sm">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" className="text-zinc-800">
-                                            <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.908 3.152-1.928 4.176-1.288 1.288-3.136 2.536-6.448 2.536-5.464 0-9.8-4.424-9.8-9.8s4.336-9.8 9.8-9.8c2.936 0 5.168 1.152 6.704 2.616l2.312-2.312c-1.984-1.904-4.576-3.32-9.016-3.32-7.488 0-13.68 6.088-13.68 13.68s6.192 13.68 13.68 13.68c4.04 0 7.104-1.336 9.488-3.832 2.456-2.456 3.232-5.904 3.232-8.68 0-.824-.072-1.608-.208-2.312H12.48z" />
-                                        </svg>
-                                        GOOGLE REVIEW
-                                    </div>
-                                </div>
-                                
-                                <Quote size={40} className="text-primary/10 mb-8 group-hover/card:text-primary/20 transition-colors duration-700" />
-                                
-                                <p className="text-zinc-800 text-xl md:text-2xl font-light leading-[1.6] mb-12 whitespace-normal italic">
-                                    "{t.text}"
-                                </p>
-                            </div>
-                            
-                            <div className="flex items-center gap-5 pt-8 border-t border-zinc-100 mt-auto">
-                                <div className="w-14 h-14 rounded-2xl bg-primary/5 border border-primary/10 flex items-center justify-center text-primary font-display font-bold text-lg">
-                                    {t.name.split(' ').map((n: string) => n[0]).join('')}
-                                </div>
-                                <div>
-                                    <h4 className="text-zinc-900 font-medium text-lg tracking-tight">{t.name}</h4>
-                                    <p className="text-zinc-500 text-xs uppercase tracking-[0.15em] font-mono mt-1">{t.project}</p>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </motion.div>
-                
-                {/* Gradientes laterales para suavizar el borde */}
-                <div className="absolute top-0 left-0 w-40 h-full bg-gradient-to-r from-white to-transparent z-10" />
-                <div className="absolute top-0 right-0 w-40 h-full bg-gradient-to-l from-white to-transparent z-10" />
+                            <Swiper
+                                modules={[Navigation, Autoplay, Pagination]}
+                                spaceBetween={16}
+                                slidesPerView={1.1}
+                                centeredSlides={true}
+                                loop={true}
+                                autoplay={{
+                                    delay: 5000,
+                                    disableOnInteraction: false,
+                                }}
+                                navigation={{
+                                    prevEl: prevRef.current,
+                                    nextEl: nextRef.current,
+                                }}
+                                onBeforeInit={(swiper) => {
+                                    // @ts-expect-error Swiper types
+                                    swiper.params.navigation.prevEl = prevRef.current;
+                                    // @ts-expect-error Swiper types
+                                    swiper.params.navigation.nextEl = nextRef.current;
+                                }}
+                                breakpoints={{
+                                    640: {
+                                        slidesPerView: 1.2,
+                                        spaceBetween: 24,
+                                        centeredSlides: true,
+                                    },
+                                    768: {
+                                        slidesPerView: 1.5,
+                                        spaceBetween: 32,
+                                        centeredSlides: false,
+                                    },
+                                    1024: {
+                                        slidesPerView: 2.2,
+                                        spaceBetween: 40,
+                                        centeredSlides: false,
+                                    },
+                                    1280: {
+                                        slidesPerView: 2.8,
+                                        spaceBetween: 48,
+                                        centeredSlides: false,
+                                    }
+                                }}
+                                className="!overflow-visible pb-16"
+                            >
+                                {testimonials.map((t: any, i: number) => (
+                                    <SwiperSlide key={i} className="h-auto">
+                                        <div className="bg-zinc-50 border border-zinc-100 p-8 md:p-12 rounded-[2.5rem] md:rounded-[3.5rem] h-full flex flex-col justify-between shadow-sm hover:shadow-xl hover:shadow-primary/5 hover:border-primary/20 transition-all duration-700 min-h-[360px] sm:min-h-[400px] relative group overflow-hidden">
+                                            <Quote size={80} className="absolute -top-4 -right-4 text-primary/5 rotate-12 group-hover:text-primary/10 transition-all duration-700 md:size-[160px]" />
+                                            
+                                            <div className="relative z-10">
+                                                <div className="flex justify-between items-start mb-8 md:mb-12">
+                                                    <div className="flex gap-1">
+                                                        {[...Array(5)].map((_, idx) => (
+                                                            <Star key={idx} size={16} className="fill-primary text-primary" />
+                                                        ))}
+                                                    </div>
+                                                    <div className="flex items-center gap-3 px-4 py-2 rounded-full bg-white border border-zinc-100 text-[10px] font-mono text-zinc-500 tracking-wider shadow-sm">
+                                                        <img src="/icons/google.svg" alt="Google" className="w-8 h-8" />
+                                                        <span className="font-bold">GOOGLE</span>
+                                                    </div>
+                                                </div>
+                                                
+                                                <p className="text-zinc-800 text-lg md:text-2xl font-light leading-[1.6] mb-10 italic">
+                                                    &quot;{t.text}&quot;
+                                                </p>
+                                            </div>
+                                            
+                                            <div className="flex items-center gap-4 pt-6 border-t border-zinc-100 mt-auto relative z-10">
+                                                <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-primary/5 border border-primary/10 flex items-center justify-center text-primary font-display font-bold text-base md:text-lg">
+                                                    {t.name.split(' ').map((n: string) => n[0]).join('')}
+                                                </div>
+                                                <div className="min-w-0">
+                                                    <h4 className="text-zinc-900 font-semibold text-base md:text-lg tracking-tight truncate">{t.name}</h4>
+                                                    <p className="text-zinc-500 text-[10px] uppercase tracking-widest font-mono truncate">{t.project}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+                        </motion.div>
+                    ) : (
+                        <div className="h-[400px] w-full bg-zinc-50 animate-pulse rounded-[3rem]" />
+                    )}
+                </AnimatePresence>
             </div>
 
-            <div className="container mx-auto px-6 mt-16 md:mt-32 relative z-10">
-                <div className="flex flex-col md:flex-row justify-between items-center gap-12 py-12 border-y border-zinc-100">
-                    <div className="flex flex-col items-center md:items-start gap-2">
-                        <span className="text-4xl md:text-5xl font-display font-bold text-zinc-900">4.9/5.0</span>
+            <div className="container mx-auto px-6 mt-8 md:mt-20 relative z-10">
+                <div className="flex flex-col md:flex-row justify-between items-center gap-10 py-10 border-y border-zinc-100">
+                    <div className="flex flex-col items-center md:items-start gap-1">
+                        <span className="text-3xl md:text-5xl font-display font-bold text-zinc-900">4.9/5.0</span>
                         <div className="flex gap-1 text-primary">
-                            {[...Array(5)].map((_, i) => <Star key={i} size={20} className="fill-current" />)}
+                            {[...Array(5)].map((_, i) => <Star key={i} size={18} className="fill-current" />)}
                         </div>
-                        <p className="text-zinc-500 text-xs font-mono uppercase tracking-widest mt-2">Rating Global en Google</p>
+                        <p className="text-zinc-400 text-[9px] font-mono uppercase tracking-[0.2em] mt-2">Rating Global en Google</p>
                     </div>
                     
-                    <div className="hidden lg:block w-[1px] h-20 bg-zinc-200" />
+                    <div className="hidden lg:block w-[1px] h-16 bg-zinc-200" />
 
                     <div className="max-w-md text-center md:text-right">
-                        <p className="text-zinc-600 text-sm md:text-base font-light italic mb-4">
-                            "Cada entrega es un compromiso renovado con la excelencia técnica y la satisfacción de quienes confían en nosotros."
+                        <p className="text-zinc-500 text-sm font-light italic mb-3">
+                            &quot;Cada entrega es un compromiso renovado con la excelencia técnica y la satisfacción de quienes confían en nosotros.&quot;
                         </p>
-                        <p className="text-primary font-mono text-[10px] uppercase tracking-[0.2em]">— Mirador Construcciones</p>
+                        <p className="text-primary font-mono text-[9px] uppercase tracking-[0.2em]">— Mirador Construcciones</p>
                     </div>
                 </div>
             </div>
