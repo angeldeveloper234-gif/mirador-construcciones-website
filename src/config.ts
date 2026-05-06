@@ -1,3 +1,34 @@
+export interface Project {
+    id: string;
+    title: string;
+    category: string;
+    year: string;
+    location: string;
+    area: string;
+    tag: string;
+    subtitle: string;
+    description: string;
+    image: string;
+    highlights: { label: string; value: string }[];
+    gallery: string[];
+    beforeAfter?: {
+        before: string;
+        after: string;
+    };
+    content: {
+        context: string;
+        process: string;
+        materiality: string;
+        result: string;
+        testimonial: string;
+        credits: {
+            client: string;
+            collaborators: string;
+            timeline: string;
+        };
+    };
+}
+
 export const config = {
     branding: {
         name: "Mirador Construcciones",
@@ -159,7 +190,7 @@ export const config = {
                 }
             }
         }
-    ],
+    ] as Project[],
     dynamicContent: {
         city: "Buenos Aires",
         localAnchor: "Recoleta",

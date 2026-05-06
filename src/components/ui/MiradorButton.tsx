@@ -10,7 +10,8 @@ interface MiradorButtonProps {
     children: React.ReactNode;
     onClick?: () => void;
     className?: string;
-    variant?: 'primary' | 'dark' | 'white';
+    variant?: 'primary' | 'dark' | 'white' | 'outline';
+    size?: 'sm' | 'md' | 'lg';
     type?: 'button' | 'submit' | 'reset';
     icon?: React.ReactNode;
     href?: string;
@@ -22,6 +23,7 @@ export const MiradorButton = ({
     onClick, 
     className, 
     variant = 'primary',
+    size = 'md',
     type = 'button',
     icon,
     href,
@@ -31,13 +33,15 @@ export const MiradorButton = ({
     const variants = {
         primary: "bg-primary text-white hover:bg-industrial-900",
         dark: "bg-industrial-900 text-white hover:bg-black",
-        white: "bg-white text-industrial-900 hover:bg-zinc-100 shadow-lg"
+        white: "bg-white text-industrial-900 hover:bg-zinc-100 shadow-lg",
+        outline: "bg-transparent text-industrial-900 border border-industrial-200 hover:bg-industrial-50"
     };
 
     const iconColors = {
         primary: "text-white bg-industrial-900 group-hover:bg-white group-hover:text-primary",
         dark: "text-industrial-900 bg-white group-hover:text-black",
-        white: "text-white bg-industrial-900 group-hover:bg-primary group-hover:text-white"
+        white: "text-white bg-industrial-900 group-hover:bg-primary group-hover:text-white",
+        outline: "text-white bg-industrial-900 group-hover:bg-primary"
     };
 
     const iconElement = (
@@ -72,9 +76,16 @@ export const MiradorButton = ({
         </div>
     );
 
+    const sizes = {
+        sm: "px-4 py-2 text-[10px]",
+        md: "px-6 py-2.5 text-[11px]",
+        lg: "px-10 py-4 text-[13px]"
+    };
+
     const commonClasses = cn(
-        "group relative inline-flex items-center rounded-full px-6 py-2.5 font-sans font-bold text-[11px] uppercase tracking-[0.2em] transition-all duration-500 overflow-hidden shadow-xl",
+        "group relative inline-flex items-center rounded-full font-sans font-bold uppercase tracking-[0.2em] transition-all duration-500 overflow-hidden shadow-xl",
         variants[variant],
+        sizes[size],
         className
     );
 
